@@ -10,6 +10,7 @@ import { API_URL } from "./shared";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { auth0Config } from "./auth0-config";
 
+
 const AppContent = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -96,6 +97,8 @@ const AppContent = () => {
     return <div className="app">Loading...</div>;
   }
 
+  console.log("This is the user", user);
+
   return (
     <div>
       <NavBar
@@ -139,7 +142,7 @@ const AppContent = () => {
                       <Link to="/signup">signup</Link> to continue.
                     </p>
                     <button
-                      onClick={handleAuth0LoginClick}
+                      onClick={() => loginWithRedirect()}
                       className="auth0-login-btn"
                     >
                       Login with Auth0
@@ -170,4 +173,12 @@ const App = () => {
 // and that we wrap our entire app in it. With this in place, we can
 // declare Routes, Links, and use useful hooks like useNavigate.
 const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<Auth0Provider
+    domain="dev-47rv3ugzi14zhmjy.us.auth0.com"
+    clientId="g4CwsBCFktQBimKaZP1TtpqqqGtSdAEx"
+    authorizationParams={{
+      redirect_uri: "http://localhost:3000"
+    }}
+  >
+    <App />
+  </Auth0Provider>,);
