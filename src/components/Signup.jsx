@@ -152,7 +152,7 @@ const Signup = ({ setUser, onAuth0Login }) => {
 
         <button
           type="button"
-          onClick={onAuth0Login}
+          onClick={() => loginWithRedirect()}
           className="auth0-login-btn"
         >
           Sign up with Auth0

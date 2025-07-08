@@ -171,3 +171,14 @@ const App = () => {
 // declare Routes, Links, and use useful hooks like useNavigate.
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
+root.render(
+<Auth0Provider
+    domain="dev-w5l850kkmucq6zqz.us.auth0.com"
+    clientId="bVnrXcA1oi507cdpo84i0xz3hiN4DClp"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
+    <App />
+  </Auth0Provider>,
+);
