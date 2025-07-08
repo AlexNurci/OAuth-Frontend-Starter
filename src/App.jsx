@@ -177,7 +177,7 @@ root.render(<Auth0Provider
     domain="dev-47rv3ugzi14zhmjy.us.auth0.com"
     clientId="g4CwsBCFktQBimKaZP1TtpqqqGtSdAEx"
     authorizationParams={{
-      redirect_uri: "http://localhost:3000"
+      redirect_uri: window.location.origin
     }}
   >
     <App />
