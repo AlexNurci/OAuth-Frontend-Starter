@@ -10,7 +10,6 @@ import { API_URL } from "./shared";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { auth0Config } from "./auth0-config";
 
-
 const AppContent = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -109,7 +108,15 @@ const AppContent = () => {
       />
       <div className="app">
         <h1>Hello React!</h1>
-        <img className="react-logo" src="/react-logo.svg" alt="React Logo" />
+        {user ? (
+          <img
+            classNme="user-avatar"
+            src={auth0User?.picture}
+            alt="User Avatar"
+          />
+        ) : (
+          <img className="react-logo" src="/react-logo.svg" alt="React Logo" />
+        )}
 
         <Routes>
           <Route
@@ -173,12 +180,14 @@ const App = () => {
 // and that we wrap our entire app in it. With this in place, we can
 // declare Routes, Links, and use useful hooks like useNavigate.
 const root = createRoot(document.getElementById("root"));
-root.render(<Auth0Provider
+root.render(
+  <Auth0Provider
     domain="dev-47rv3ugzi14zhmjy.us.auth0.com"
     clientId="g4CwsBCFktQBimKaZP1TtpqqqGtSdAEx"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
     }}
   >
     <App />
-  </Auth0Provider>,);
+  </Auth0Provider>
+);
