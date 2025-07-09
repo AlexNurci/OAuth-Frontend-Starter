@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../shared";
 import "./AuthStyles.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Login = ({ setUser, onAuth0Login }) => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Login = ({ setUser, onAuth0Login }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { loginWithRedirect } = useAuth0();
 
   const validateForm = () => {
     const newErrors = {};
@@ -125,7 +127,7 @@ const Login = ({ setUser, onAuth0Login }) => {
 
         <button
           type="button"
-          onClick={onAuth0Login}
+          onClick={() => loginWithRedirect()}
           className="auth0-login-btn"
         >
           Login with Auth0

@@ -14,9 +14,9 @@ module.exports = {
   plugins: [
     new webpack.EnvironmentPlugin({
       API_URL: "http://localhost:8080",
-      REACT_APP_AUTH0_DOMAIN: "dev-m71z1z5w3vgzg8av.us.auth0.com",
-      REACT_APP_AUTH0_CLIENT_ID: "HVEGDlyPsEzRFswZljTujJxLCnVgp5wx",
-      REACT_APP_AUTH0_AUDIENCE: "http//:localhost:3000.us.auth0.com/api/v2/",
+      REACT_APP_AUTH0_DOMAIN: "dev-47rv3ugzi14zhmjy.us.auth0.com",
+      REACT_APP_AUTH0_CLIENT_ID: "g4CwsBCFktQBimKaZP1TtpqqqGtSdAEx",
+      REACT_APP_AUTH0_AUDIENCE: "https://dev-47rv3ugzi14zhmjy.us.auth0.com/api/v2/",
     }),
   ],
   module: {

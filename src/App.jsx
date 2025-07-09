@@ -96,6 +96,8 @@ const AppContent = () => {
     return <div className="app">Loading...</div>;
   }
 
+  console.log("This is the user", user);
+
   return (
     <div>
       <NavBar
@@ -106,7 +108,15 @@ const AppContent = () => {
       />
       <div className="app">
         <h1>Hello React!</h1>
-        <img className="react-logo" src="/react-logo.svg" alt="React Logo" />
+        {user ? (
+          <img
+            classNme="user-avatar"
+            src={auth0User?.picture}
+            alt="User Avatar"
+          />
+        ) : (
+          <img className="react-logo" src="/react-logo.svg" alt="React Logo" />
+        )}
 
         <Routes>
           <Route
@@ -139,7 +149,7 @@ const AppContent = () => {
                       <Link to="/signup">signup</Link> to continue.
                     </p>
                     <button
-                      onClick={handleAuth0LoginClick}
+                      onClick={() => loginWithRedirect()}
                       className="auth0-login-btn"
                     >
                       Login with Auth0
@@ -170,4 +180,14 @@ const App = () => {
 // and that we wrap our entire app in it. With this in place, we can
 // declare Routes, Links, and use useful hooks like useNavigate.
 const root = createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+  <Auth0Provider
+    domain="dev-47rv3ugzi14zhmjy.us.auth0.com"
+    clientId="g4CwsBCFktQBimKaZP1TtpqqqGtSdAEx"
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+    }}
+  >
+    <App />
+  </Auth0Provider>
+);
